@@ -1,4 +1,4 @@
-
+package me.libin.guice.quartz.util;
 
 import org.quartz.Job;
 import org.quartz.JobDetail;

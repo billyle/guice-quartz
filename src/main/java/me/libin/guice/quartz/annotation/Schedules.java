@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.springframework.scheduling.annotation;
+package me.libin.guice.quartz.annotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

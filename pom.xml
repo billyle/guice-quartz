@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>tv.jufan.live</groupId>
+	<groupId>me.libin.guice</groupId>
 	<artifactId>guice-quartz</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>guice-quartz</name>
@@ -55,7 +55,6 @@
 			<groupId>com.google.inject</groupId>
 			<artifactId>guice</artifactId>
 			<version>3.0</version>
-			<scope>runtime</scope>
 		</dependency>
 		<!-- 定时任务 -->
 		<dependency>
@@ -102,19 +101,9 @@
 				</executions>
 			</plugin>
 			<!-- 校验签名插件 -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-gpg-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>sign-artifacts</id>
-						<phase>verify</phase>
-						<goals>
-							<goal>sign</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-gpg-plugin</artifactId> 
+				<executions> <execution> <id>sign-artifacts</id> <phase>verify</phase> <goals> 
+				<goal>sign</goal> </goals> </execution> </executions> </plugin> -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-eclipse-plugin</artifactId>

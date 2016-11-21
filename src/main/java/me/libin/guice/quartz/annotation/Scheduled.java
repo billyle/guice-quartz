@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.springframework.scheduling.annotation;
+package me.libin.guice.quartz.annotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -25,16 +25,18 @@ import java.lang.annotation.Target;
 
 /**
  * Annotation that marks a method to be scheduled. Exactly one of the
- * {@link #cron()}, {@link #fixedDelay()}, or {@link #fixedRate()}
- * attributes must be specified.
+ * {@link #cron()}, {@link #fixedDelay()}, or {@link #fixedRate()} attributes
+ * must be specified.
  *
- * <p>The annotated method must expect no arguments and have a
- * {@code void} return type.
+ * <p>
+ * The annotated method must expect no arguments and have a {@code void} return
+ * type.
  *
- * <p>Processing of {@code @Scheduled} annotations is performed by
- * registering a {@link ScheduledAnnotationBeanPostProcessor}. This can be
- * done manually or, more conveniently, through the {@code <task:annotation-driven/>}
- * element or @{@link EnableScheduling} annotation.
+ * <p>
+ * Processing of {@code @Scheduled} annotations is performed by registering a
+ * {@link ScheduledAnnotationBeanPostProcessor}. This can be done manually or,
+ * more conveniently, through the {@code <task:annotation-driven/>} element
+ * or @{@link EnableScheduling} annotation.
  *
  * @author Mark Fisher
  * @author Dave Syer
@@ -44,7 +46,7 @@ import java.lang.annotation.Target;
  * @see ScheduledAnnotationBeanPostProcessor
  * @see Schedules
  */
-@Target({ElementType.METHOD, ElementType.ANNOTATION_TYPE})
+@Target({ ElementType.METHOD, ElementType.ANNOTATION_TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Repeatable(Schedules.class)
@@ -52,35 +54,42 @@ public @interface Scheduled {
 
 	/**
 	 * A cron-like expression, extending the usual UN*X definition to include
-	 * triggers on the second as well as minute, hour, day of month, month
-	 * and day of week.  e.g. {@code "0 * * * * MON-FRI"} means once per minute on
+	 * triggers on the second as well as minute, hour, day of month, month and
+	 * day of week. e.g. {@code "0 * * * * MON-FRI"} means once per minute on
 	 * weekdays (at the top of the minute - the 0th second).
+	 * 
 	 * @return an expression that can be parsed to a cron schedule
 	 * @see org.springframework.scheduling.support.CronSequenceGenerator
 	 */
 	String cron() default "";
 
 	/**
-	 * A time zone for which the cron expression will be resolved. By default, this
-	 * attribute is the empty String (i.e. the server's local time zone will be used).
-	 * @return a zone id accepted by {@link java.util.TimeZone#getTimeZone(String)},
-	 * or an empty String to indicate the server's default time zone
+	 * A time zone for which the cron expression will be resolved. By default,
+	 * this attribute is the empty String (i.e. the server's local time zone
+	 * will be used).
+	 * 
+	 * @return a zone id accepted by
+	 *         {@link java.util.TimeZone#getTimeZone(String)}, or an empty
+	 *         String to indicate the server's default time zone
 	 * @since 4.0
-	 * @see org.springframework.scheduling.support.CronTrigger#CronTrigger(String, java.util.TimeZone)
+	 * @see org.springframework.scheduling.support.CronTrigger#CronTrigger(String,
+	 *      java.util.TimeZone)
 	 * @see java.util.TimeZone
 	 */
 	String zone() default "";
 
 	/**
-	 * Execute the annotated method with a fixed period between the end
-	 * of the last invocation and the start of the next.
+	 * Execute the annotated method with a fixed period between the end of the
+	 * last invocation and the start of the next.
+	 * 
 	 * @return the delay in milliseconds
 	 */
 	long fixedDelay() default -1;
 
 	/**
-	 * Execute the annotated method with a fixed period between the end
-	 * of the last invocation and the start of the next.
+	 * Execute the annotated method with a fixed period between the end of the
+	 * last invocation and the start of the next.
+	 * 
 	 * @return the delay in milliseconds as a String value, e.g. a placeholder
 	 * @since 3.2.2
 	 */
@@ -88,12 +97,14 @@ public @interface Scheduled {
 
 	/**
 	 * Execute the annotated method with a fixed period between invocations.
+	 * 
 	 * @return the period in milliseconds
 	 */
 	long fixedRate() default -1;
 
 	/**
 	 * Execute the annotated method with a fixed period between invocations.
+	 * 
 	 * @return the period in milliseconds as a String value, e.g. a placeholder
 	 * @since 3.2.2
 	 */
@@ -102,6 +113,7 @@ public @interface Scheduled {
 	/**
 	 * Number of milliseconds to delay before the first execution of a
 	 * {@link #fixedRate()} or {@link #fixedDelay()} task.
+	 * 
 	 * @return the initial delay in milliseconds
 	 * @since 3.2
 	 */
@@ -110,7 +122,9 @@ public @interface Scheduled {
 	/**
 	 * Number of milliseconds to delay before the first execution of a
 	 * {@link #fixedRate()} or {@link #fixedDelay()} task.
-	 * @return the initial delay in milliseconds as a String value, e.g. a placeholder
+	 * 
+	 * @return the initial delay in milliseconds as a String value, e.g. a
+	 *         placeholder
 	 * @since 3.2.2
 	 */
 	String initialDelayString() default "";
