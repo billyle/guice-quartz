@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>me.libin.guice</groupId>
 	<artifactId>guice-quartz</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<name>guice-quartz</name>
 	<description>guice的定时任务插件</description>
 
@@ -81,6 +81,39 @@
 					<target>1.8</target>
 					<encoding>UTF-8</encoding>
 					<compilerArgument> -XDignore.symbol.file </compilerArgument>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.sonatype.plugins</groupId>
+				<artifactId>jarjar-maven-plugin</artifactId>
+				<version>1.9</version>
+				<executions>
+					<execution>
+						<id>jarjar</id>
+						<goals>
+							<goal>jarjar</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<overwrite>true</overwrite>
+					<includes>
+						<include>*:asm*</include>
+						<include>*:cglib</include>
+					</includes>
+					<rules>
+						<rule>
+							<pattern>me.libin.guice.quartz.internal.util.*</pattern>
+							<result>me.libin.guice.quartz.internal.util.$@1</result>
+						</rule>
+						<rule>
+							<pattern>me.libin.guice.quartz.internal.util.**.*</pattern>
+							<result>me.libin.guice.quartz.internal.util.@1.$@2</result>
+						</rule>
+						<keep>
+							<pattern>me.libin.guice.quartz.**</pattern>
+						</keep>
+					</rules>
 				</configuration>
 			</plugin>
 			<!-- 发布时上传源代码 -->
